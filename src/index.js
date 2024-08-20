@@ -12,9 +12,12 @@ const runGame = (description, generateQuestion, generateAnswer) => {
   console.log(description);
   while (errorsCount < maxErrorsCount && score < maxScore) {
     const question = generateQuestion();
+    const answer = generateAnswer(question);
     console.log(`Question: ${question}`);
+
     const userAnswer = readlineSync.question('Your answer: ');
-    if (userAnswer === generateAnswer(question)) {
+    
+    if (userAnswer === answer) {
       console.log('Correct!');
       score += 1;
     } else {
