@@ -22,7 +22,7 @@ const runGame = (
 
     const userAnswer = readlineSync.question('Your answer: ');
 
-    if (userAnswer === answer) {
+    if (userAnswer === String(answer)) {
       console.log('Correct!');
       score += 1;
     } else {
