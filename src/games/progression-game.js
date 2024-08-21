@@ -17,7 +17,7 @@ const generateQuestion = () => {
       result = `${result}${progressionStart + progressionBase * i} `;
     }
   }
-  return result;
+  return result.trim();
 };
 
 const generateAnswer = (question) => {
