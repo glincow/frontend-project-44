@@ -12,9 +12,9 @@ const generateQuestion = () => {
   let result = '';
   for (let i = 0; i < progressionLength; i += 1) {
     if (i === progressionHiddenIndex) {
-      result = i === 0 ? '..' : `${result} ..`;
+      result = i === 0 ? '.. ' : `${result}.. `;
     } else {
-      result = `${result} ${progressionStart + progressionBase * i}`;
+      result = `${result}${progressionStart + progressionBase * i} `;
     }
   }
   return result;
