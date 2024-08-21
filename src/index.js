@@ -1,7 +1,12 @@
 import readlineSync from 'readline-sync';
 import { greet, getName } from './cli.js';
 
-const runGame = (description, generateQuestion, generateAnswer) => {
+const runGame = (
+  description,
+  generateQuestion,
+  generateAnswer,
+  printRightAnswerMessage = () => undefined,
+) => {
   const maxErrorsCount = 1;
   const maxScore = 3;
   let score = 0;
@@ -16,12 +21,13 @@ const runGame = (description, generateQuestion, generateAnswer) => {
     console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question('Your answer: ');
-    
+
     if (userAnswer === answer) {
       console.log('Correct!');
       score += 1;
     } else {
       console.log(`Let's try again, ${name}!`);
+      printRightAnswerMessage(userAnswer, answer);
       errorsCount += 1;
     }
   }
