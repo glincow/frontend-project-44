@@ -1,17 +1,12 @@
 import runGame from '../index.js';
+import getRndInteger from '../math.js';
 
 const description = 'Find the greatest common divisor of given numbers.';
 
-const generateQuestion = () => {
-  const firstNumber = Math.floor(Math.random() * 101 + 1);
-  const secondNumber = Math.floor(Math.random() * 101 + 1);
-  return `${firstNumber} ${secondNumber}`;
-};
-
-const generateAnswer = (question) => {
-  let [firstNumber, secondNumber] = question.split(' ');
-  firstNumber = Number(firstNumber);
-  secondNumber = Number(secondNumber);
+const generateQuestionAndAnswer = () => {
+  let firstNumber = getRndInteger(1, 100);
+  let secondNumber = getRndInteger(1, 100);
+  const question = `${firstNumber} ${secondNumber}`;
 
   while (firstNumber !== 0 && secondNumber !== 0) {
     if (firstNumber > secondNumber) {
@@ -20,7 +15,8 @@ const generateAnswer = (question) => {
       secondNumber %= firstNumber;
     }
   }
-  return String(firstNumber + secondNumber);
+  const answer = String(firstNumber + secondNumber);
+  return [question, answer];
 };
 
 const printRightAnswerMessage = (userAnswer, answer) => {
@@ -29,7 +25,6 @@ const printRightAnswerMessage = (userAnswer, answer) => {
 
 export default () => runGame(
   description,
-  generateQuestion,
-  generateAnswer,
+  generateQuestionAndAnswer,
   printRightAnswerMessage,
 );

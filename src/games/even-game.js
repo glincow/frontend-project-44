@@ -1,15 +1,12 @@
 import runGame from '../index.js';
+import getRndInteger from '../math.js';
 
 const description = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const generateQuestion = () => {
-  const numberToCheck = Math.floor(Math.random() * 101);
-  return numberToCheck;
+const generateQuestionAndAnswer = () => {
+  const numberToCheck = getRndInteger(1, 100);
+  const answer = numberToCheck % 2 === 0 ? 'yes' : 'no';
+  return [numberToCheck, answer];
 };
 
-const generateAnswer = (question) => {
-  const answer = question % 2 === 0 ? 'yes' : 'no';
-  return answer;
-};
-
-export default () => runGame(description, generateQuestion, generateAnswer);
+export default () => runGame(description, generateQuestionAndAnswer);

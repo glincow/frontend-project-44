@@ -3,36 +3,34 @@ import { greet, getName } from './cli.js';
 
 const runGame = (
   description,
-  generateQuestion,
-  generateAnswer,
+  generateQuestionAndAnswer,
   printRightAnswerMessage = () => undefined,
 ) => {
-  const maxErrorsCount = 1;
-  const maxScore = 3;
-  let score = 0;
-  let errorsCount = 0;
+  const maxRounds = 3;
+  let roundCount = 0;
 
+  console.log('Welcome to the Brain Games!');
   const name = getName('May I have your name?');
   greet(name);
   console.log(description);
-  while (errorsCount < maxErrorsCount && score < maxScore) {
-    const question = generateQuestion();
-    const answer = generateAnswer(question);
+
+  while (roundCount < maxRounds) {
+    const [question, answer] = generateQuestionAndAnswer();
     console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question('Your answer: ');
 
     if (userAnswer === String(answer)) {
       console.log('Correct!');
-      score += 1;
+      roundCount += 1;
     } else {
       console.log(`Let's try again, ${name}!`);
       printRightAnswerMessage(userAnswer, answer);
-      errorsCount += 1;
+      break;
     }
   }
 
-  if (score === maxScore) {
+  if (roundCount === maxRounds) {
     console.log(`Congratulations, ${name}!`);
   }
 };

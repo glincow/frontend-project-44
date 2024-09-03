@@ -1,23 +1,20 @@
 import runGame from '../index.js';
+import getRndInteger from '../math.js';
 
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const generateQuestion = () => {
-  const number = Math.floor(Math.random() * 101 + 1);
-  return number;
-};
+const generateQuestionAndAnswer = () => {
+  const number = getRndInteger(1, 100);
 
-const generateAnswer = (question) => {
   let isPrime = true;
-  const number = question;
   for (let i = 2; i < number; i += 1) {
-    if (question % i === 0) {
+    if (number % i === 0) {
       isPrime = false;
       break;
     }
   }
-  const result = isPrime ? 'yes' : 'no';
-  return result;
+  const answer = isPrime ? 'yes' : 'no';
+  return [number, answer];
 };
 
 const printRightAnswerMessage = (userAnswer, answer) => {
@@ -26,7 +23,6 @@ const printRightAnswerMessage = (userAnswer, answer) => {
 
 export default () => runGame(
   description,
-  generateQuestion,
-  generateAnswer,
+  generateQuestionAndAnswer,
   printRightAnswerMessage,
 );
