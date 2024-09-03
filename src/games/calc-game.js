@@ -1,11 +1,12 @@
 import runGame from '../index.js';
+import getRndInteger from '../math.js';
 
 const description = 'What is the result of the expression?';
 
 const generateQuestionAndAnswer = () => {
   const operations = ['+', '-', '*'];
-  const firstNumber = Math.floor(Math.random() * 10 + 1);
-  const secondNumber = Math.floor(Math.random() * 10 + 1);
+  const firstNumber = getRndInteger(1, 10);
+  const secondNumber = getRndInteger(1, 10);
   const operation = operations[Math.floor(Math.random() * operations.length)];
   const question = `${firstNumber} ${operation} ${secondNumber}`;
 

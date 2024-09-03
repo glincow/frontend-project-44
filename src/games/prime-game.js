@@ -4,7 +4,7 @@ import getRndInteger from '../math.js';
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const generateQuestionAndAnswer = () => {
-  const number = getRndInteger(1, 100);
+  const number = getRndInteger(2, 100);
 
   let isPrime = true;
   for (let i = 2; i < number; i += 1) {
